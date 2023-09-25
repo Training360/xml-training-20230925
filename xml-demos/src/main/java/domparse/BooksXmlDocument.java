@@ -1,24 +1,27 @@
 package domparse;
 
+import lombok.Getter;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Source;
 import java.io.Reader;
 import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
+@Getter
 public class BooksXmlDocument {
 
+    private List<Book> books;
+
     @SneakyThrows
-    public List<Book> getBooks(Reader reader) {
+    public void read(Reader reader) {
         var factory = DocumentBuilderFactory.newInstance();
         var builder = factory.newDocumentBuilder();
-        var books = new ArrayList<Book>();
+        books = new ArrayList<>();
 
         var document =
                 builder.parse(new InputSource(reader));
@@ -32,6 +35,16 @@ public class BooksXmlDocument {
 
         }
         log.info("Books read from file: {}", books);
-        return books;
     }
+
+    public void setTitleWithIsbn(String isbn, String newTitle) {
+        books
+                .stream()
+                .filter(book -> book.getIsbn10().equals(isbn))
+                .findFirst()
+                .orElseThrow()
+                .setTitle(newTitle);
+    }
+
+
 }
