@@ -1,6 +1,7 @@
 package domparse;
 
 import org.junit.jupiter.api.Test;
+import org.xmlunit.assertj.XmlAssert;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -45,11 +46,12 @@ class BooksXmlDocumentTest {
         document.read(new StringReader(input));
 
         document.setTitleWithIsbn("1590597060", "Pro XML Development");
-        System.out.println(document.getBooks());
 
         var writer = new StringWriter();
         document.write(writer);
 
-        System.out.println(writer.toString());
+        XmlAssert.assertThat(writer.toString())
+                .valueByXPath("/catalog/book[@isbn10='1590597060']/title")
+                .isEqualTo("Pro XML Development");
     }
 }
