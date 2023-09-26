@@ -7,7 +7,11 @@ import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.TransformerFactory;
+import javax.xml.transform.dom.DOMSource;
+import javax.xml.transform.stream.StreamResult;
 import java.io.Reader;
+import java.io.Writer;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,8 +23,13 @@ public class BooksXmlDocument {
 
     @SneakyThrows
     public void read(Reader reader) {
-        var factory = DocumentBuilderFactory.newInstance();
-        var builder = factory.newDocumentBuilder();
+//        var factory = DocumentBuilderFactory.newInstance();
+//        var builder = factory.newDocumentBuilder();
+
+        var builder = DocumentBuilderFactory
+                .newInstance()
+                .newDocumentBuilder();
+
         books = new ArrayList<>();
 
         var document =
@@ -37,6 +46,32 @@ public class BooksXmlDocument {
         log.info("Books read from file: {}", books);
     }
 
+    @SneakyThrows
+    public void write(Writer writer) {
+        var factory = DocumentBuilderFactory.newInstance();
+        var builder = factory.newDocumentBuilder();
+
+        var document = builder.newDocument();
+        var catalogElement = document.createElement("catalog");
+        document.appendChild(catalogElement);
+
+        for (var book: books) {
+            var bookElement = document.createElement("book");
+            catalogElement.appendChild(bookElement);
+
+            bookElement.setAttribute("isbn10", book.getIsbn10());
+
+            var titleElement = document.createElement("title");
+            bookElement.appendChild(titleElement);
+            bookElement.setTextContent(book.getTitle());
+        }
+
+        var transformerFactory = TransformerFactory.newInstance();
+        var transformer = transformerFactory.newTransformer();
+        var source = new DOMSource(document);
+        transformer.transform(source, new StreamResult(writer));
+    }
+
     public void setTitleWithIsbn(String isbn, String newTitle) {
         books
                 .stream()
@@ -44,6 +79,8 @@ public class BooksXmlDocument {
                 .findFirst()
                 .orElseThrow()
                 .setTitle(newTitle);
+
+
     }
 
 
