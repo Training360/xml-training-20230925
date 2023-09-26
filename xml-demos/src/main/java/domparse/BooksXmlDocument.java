@@ -7,6 +7,7 @@ import org.w3c.dom.Element;
 import org.xml.sax.InputSource;
 
 import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.transform.OutputKeys;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
@@ -63,12 +64,16 @@ public class BooksXmlDocument {
 
             var titleElement = document.createElement("title");
             bookElement.appendChild(titleElement);
-            bookElement.setTextContent(book.getTitle());
+            titleElement.setTextContent(book.getTitle());
         }
 
         var transformerFactory = TransformerFactory.newInstance();
         var transformer = transformerFactory.newTransformer();
         var source = new DOMSource(document);
+
+        transformer.setOutputProperty(OutputKeys.INDENT, "yes");
+        transformer.setOutputProperty("{http://xml.apache.org/xslt}indent-amount", "2");
+
         transformer.transform(source, new StreamResult(writer));
     }
 

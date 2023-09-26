@@ -3,6 +3,7 @@ package domparse;
 import org.junit.jupiter.api.Test;
 
 import java.io.StringReader;
+import java.io.StringWriter;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
@@ -46,6 +47,9 @@ class BooksXmlDocumentTest {
         document.setTitleWithIsbn("1590597060", "Pro XML Development");
         System.out.println(document.getBooks());
 
+        var writer = new StringWriter();
+        document.write(writer);
 
+        System.out.println(writer.toString());
     }
 }
