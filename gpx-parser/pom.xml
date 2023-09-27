@@ -67,7 +67,7 @@
                     <!-- The package of your generated sources -->
                     <packageName>gpx</packageName>
                     <sources>
-                        <source>src/main/resources</source>
+                        <source>src/main/resources/xsd</source>
                     </sources>
                 </configuration>
             </plugin>
