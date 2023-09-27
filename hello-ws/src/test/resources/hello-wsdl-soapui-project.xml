@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project id="550f5e05-12b3-4fec-a9fe-10dbbf20aa8b" activeEnvironment="Default" name="hello?wsdl" resourceRoot="" soapui-version="5.7.0" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" id="306fa451-98cf-444c-b2b5-2767f69e50f0" wsaVersion="NONE" name="HelloWebServiceSoapBinding" type="wsdl" bindingName="{https://training360.com/hello}HelloWebServiceSoapBinding" soapVersion="1_1" anonymous="optional" definition="http://localhost:8080/services/hello?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost:8080/services/hello?wsdl"><con:part><con:url>http://localhost:8080/services/hello?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="HelloWebService" targetNamespace="https://training360.com/hello" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://training360.com/hello" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http">
+  <wsdl:types>
+    <xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://training360.com/hello" version="1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:h="https://training360.com/hello">
+      <xs:complexType name="helloRequest">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Name" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:complexType name="helloResp">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Message" type="xs:string"/>
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="HelloRequest" nillable="true" type="h:helloRequest"/>
+      <xs:element name="HelloResponse" nillable="true" type="h:helloResp"/>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="sayHelloResponse">
+    <wsdl:part element="tns:HelloResponse" name="HelloResponse"></wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHello">
+    <wsdl:part element="tns:HelloRequest" name="HelloRequest"></wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HelloEndpoint">
+    <wsdl:operation name="sayHello">
+      <wsdl:input message="tns:sayHello" name="sayHello"></wsdl:input>
+      <wsdl:output message="tns:sayHelloResponse" name="sayHelloResponse"></wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWebServiceSoapBinding" type="tns:HelloEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWebService">
+    <wsdl:port binding="tns:HelloWebServiceSoapBinding" name="HelloEndpointPort">
+      <soap:address location="http://localhost:8080/services/hello"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost:8080/services/hello</con:endpoint></con:endpoints><con:operation id="532cafde-fae3-407f-a2e3-00b1ac339dc7" isOneWay="false" action="" name="sayHello" bindingOperationName="sayHello" type="Request-Response" outputName="sayHelloResponse" inputName="sayHello" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call id="29656813-f190-44da-9099-3e691584b008" name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/hello</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hel="https://training360.com/hello">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <hel:HelloRequest>\r
+         <!--Optional:-->\r
+         <hel:Name>John</hel:Name>\r
+      </hel:HelloRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="https://training360.com/hello/HelloEndpoint/sayHello"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:testSuite id="2cdd952d-4dd7-401e-8188-1a816fd6ba11" name="HelloWebServiceSoapBinding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase id="b1f9d836-dada-46e1-a023-efb63948a790" failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="sayHello TestCase" searchProperties="true"><con:settings/><con:testStep type="request" id="da1f1d51-7904-42c3-bd02-c7df1acf0047" name="sayHello"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>HelloWebServiceSoapBinding</con:interface><con:operation>sayHello</con:operation><con:request name="sayHello" id="7588712f-007b-49d7-9810-74d1bb8f9ec6"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/services/hello</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:hel="https://training360.com/hello">\r
+   <soapenv:Header/>\r
+   <soapenv:Body>\r
+      <hel:HelloRequest>\r
+         <!--Optional:-->\r
+         <hel:Name>John</hel:Name>\r
+      </hel:HelloRequest>\r
+   </soapenv:Body>\r
+</soapenv:Envelope>]]></con:request><con:assertion type="XPath Match" id="6fb8f5c1-e528-49ed-a7a7-602db54fec45" name="XPath Match"><con:configuration><path>declare namespace soap='http://schemas.xmlsoap.org/soap/envelope/';
+declare namespace h='https://training360.com/hello';
+//h:Message</path><content>Hello John!</content><allowWildcards>false</allowWildcards><ignoreNamspaceDifferences>false</ignoreNamspaceDifferences><ignoreComments>false</ignoreComments></con:configuration></con:assertion><con:credentials><con:authType>No Authorization</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="https://training360.com/hello/HelloEndpoint/sayHello" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/><con:oAuth2ProfileContainer/><con:oAuth1ProfileContainer/></con:soapui-project>
