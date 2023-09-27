@@ -69,6 +69,7 @@
                     <sources>
                         <source>src/main/resources/xsd</source>
                     </sources>
+                    <clearOutputDir>false</clearOutputDir>
                 </configuration>
             </plugin>
         </plugins>
