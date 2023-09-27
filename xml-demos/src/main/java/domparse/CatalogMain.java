@@ -12,6 +12,9 @@ public class CatalogMain {
     @SneakyThrows
     public static void main(String[] args) {
         var factory = DocumentBuilderFactory.newInstance();
+// Ha validációt akarsz
+//        factory.setSchema();
+//        factory.setValidating(true);
         var builder = factory.newDocumentBuilder();
         var books = new ArrayList<Book>();
 
