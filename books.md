@@ -9,3 +9,5 @@ https://www.amazon.com/Clean-Code-Handbook-Software-Craftsmanship/dp/0132350882/
 https://www.elegantobjects.org/
 
 https://www.amazon.com/o/asin/0321200683/ref=nosim/enterpriseint-20
+
+https://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling
