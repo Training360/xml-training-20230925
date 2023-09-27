@@ -1,6 +1,5 @@
 package jaxb;
 
-import com.sun.xml.txw2.annotation.XmlElement;
 import jakarta.xml.bind.annotation.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;

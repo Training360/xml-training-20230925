@@ -1,6 +1,8 @@
 @XmlSchema(
-        elementFormDefault= XmlNsForm.QUALIFIED,
-        namespace="http://training360.com/schemas/catalog"
+        elementFormDefault= XmlNsForm.UNQUALIFIED,
+        namespace="http://training360.com/schemas/catalog",
+            xmlns={@XmlNs(prefix="x",
+            namespaceURI=Catalog.CATALOG_NS)}
 )
 
 package jaxb;

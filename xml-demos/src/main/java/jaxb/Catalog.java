@@ -14,6 +14,8 @@ import java.util.List;
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Catalog {
 
+    public static final String CATALOG_NS = "http://training360.com/schemas/catalog";
+
 //    @XmlElementWrapper(name = "books")
     @XmlElement(name = "book")
     private List<Book> books;
