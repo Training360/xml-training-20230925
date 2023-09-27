@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog xmlns="http://training360.com/catalog" xmlns:catalog="http://training360.com/catalog">
+    <book isbn10="059610149X">
+        <catalog:title>Java and XML</catalog:title>
+    </book>
+    <book isbn10="1590597060">
+        <catalog:title>Pro XML Development with Java Technology</catalog:title>
+    </book>
+    <book isbn10="059610149X">
+        <catalog:title>Java and XML: Solutions to Real-World Problems</catalog:title>
+    </book>
+</catalog>
