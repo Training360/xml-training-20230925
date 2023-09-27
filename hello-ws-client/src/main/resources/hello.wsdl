@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?><wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="https://training360.com/hello" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="HelloWebService" targetNamespace="https://training360.com/hello">
+  <wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:h="https://training360.com/hello" attributeFormDefault="unqualified" elementFormDefault="qualified" targetNamespace="https://training360.com/hello" version="1.0">
+  <xs:complexType name="helloRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="helloResp">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="HelloRequest" nillable="true" type="h:helloRequest"/>
+  <xs:element name="HelloResponse" nillable="true" type="h:helloResp"/>
+</xs:schema>
+  </wsdl:types>
+  <wsdl:message name="sayHelloResponse">
+    <wsdl:part element="tns:HelloResponse" name="HelloResponse">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:message name="sayHello">
+    <wsdl:part element="tns:HelloRequest" name="HelloRequest">
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="HelloEndpoint">
+    <wsdl:operation name="sayHello">
+      <wsdl:input message="tns:sayHello" name="sayHello">
+    </wsdl:input>
+      <wsdl:output message="tns:sayHelloResponse" name="sayHelloResponse">
+    </wsdl:output>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="HelloWebServiceSoapBinding" type="tns:HelloEndpoint">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="sayHello">
+      <soap:operation soapAction="" style="document"/>
+      <wsdl:input name="sayHello">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="sayHelloResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="HelloWebService">
+    <wsdl:port binding="tns:HelloWebServiceSoapBinding" name="HelloEndpointPort">
+      <soap:address location="http://localhost:8080/services/hello"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
