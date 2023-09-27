@@ -56,6 +56,52 @@
             <scope>test</scope>
         </dependency>
 
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+
+        <!-- Runtime -->
+        <dependency>
+            <groupId>org.glassfish.jaxb</groupId>
+            <artifactId>jaxb-runtime</artifactId>
+            <version>4.0.3</version>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>jaxb2-maven-plugin</artifactId>
+            <version>3.1.0</version>
+            <executions>
+            <execution>
+                <id>schemagen</id>
+                <goals>
+                    <goal>schemagen</goal>
+                </goals>
+                <configuration>
+                    <outputDirectory>${project.build.outputDirectory}</outputDirectory>
+                    <sources>
+                        <source>src/main/java/jaxb/Book.java</source>
+                        <source>src/main/java/jaxb/Catalog.java</source>
+                    </sources>
+                    <transformSchemas>
+                        <transformSchema>
+                            <uri>http://training360.com/schemas/catalog</uri>
+                            <toPrefix>catalog</toPrefix>
+                            <toFile>catalog-generated.xsd</toFile>
+                        </transformSchema>
+                    </transformSchemas>
+                </configuration>
+            </execution>
+
+            </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>
