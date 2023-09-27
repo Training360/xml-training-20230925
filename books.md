@@ -11,3 +11,7 @@ https://www.elegantobjects.org/
 https://www.amazon.com/o/asin/0321200683/ref=nosim/enterpriseint-20
 
 https://www.thoughtworks.com/insights/blog/rest-api-design-resource-modeling
+
+https://www.learnwebservices.com/
+
+https://www.jtechlog.hu/2012/08/14/soapui-junit-teszteles.html
